@@ -1,0 +1,182 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>MDM Main page</title>
+    <link href="Content/reset-min.css" rel="stylesheet" />
+    <link href="Content/jquery.tipsy.css" rel="stylesheet" />
+    <link href="Content/container.css" rel="stylesheet" />
+    <link href="Content/ui.css" rel="stylesheet" type="text/css" />
+    <link href="Content/common.css" rel="stylesheet" type="text/css" />
+    <link href="Content/grid.css" rel="stylesheet" />
+    <link href="Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="Content/themes/base/jquery.ui.dialog.css" rel="stylesheet" />    
+    <link href="Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <link href="Content/Table.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.7.1.js"></script>
+    <script src="Scripts/jquery-ui-1.8.20.js"></script>    
+    <script src="Scripts/jquery.cookie.js"></script>    
+    <script src="Scripts/knockout-3.2.0.js"></script>    
+    <script src="Scripts/Common/CommonFunctions.js"></script>
+    <script src="Scripts/Common/PopUps.js"></script>
+    <script src="Scripts/Model/User.js"></script>
+    <script src="Scripts/Model/Login.js"></script>    
+    <script src="Scripts/Common/AjaxCalls.js"></script>
+    <script src="Scripts/ViewModel/MainPageViewModel.js"></script>    
+    <script src="Scripts/Model/userTypes.js"></script>
+    <script src="Scripts/ViewModel/app.js"></script>
+    <script src="Scripts/ViewModel/AppPackagesViewModel.js"></script>
+    <script src="Scripts/Model/AppPackages.js"></script>
+    <script src="Scripts/Model/CallRecord.js"></script>
+    <script src="Scripts/ViewModel/CallRecordsViewModel.js"></script>
+    <script src="Scripts/Model/Control.js"></script>  
+</head>
+<body style="background-color: #ffffff">
+    <!--  <div>
+        <pre data-bind="text: ko.toJSON($data, null, 2)"></pre>
+    </div>-->
+    <div id="header">
+        <div class="topRow">
+            <div class="centerBox colorWhiteBlue spanHover bold logo">
+                <a href="#"><img class="padding6" src="Images/logo.png" alt="logo"></a>
+
+            </div>
+            <div class="rightBox" data-bind="with: mainPageViewModel">
+
+                <a class="colorWhite spanHover">
+                    <span data-bind="text: loggedinUser"></span>
+                </a>
+
+                <img src="Content/separator.png" alt="" class="separator" />
+                <a class="colorWhite spanHover" data-bind="click: onLogOut">
+                    <span>Logout</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div id="container">
+    <div class="user-con">
+    <h1>Easy way to track users info</h1>
+    <p>MDM provides you to track and keep a record of users anytime by these four easy options</p>
+    <div class="sec"><img src="Images/lock.png"><p>Lock</p></div>
+    <div class="sec"><img src="Images/wipe.png"><p>Wipe</p></div>
+    <div class="sec"><img src="Images/info.png"><p>App info</p></div>
+    <div class="sec"><img src="Images/callrecord.png"><p>Call records</p></div>
+    </div>
+        <div id="main" data-bind="with: mainPageViewModel">
+
+
+
+            <!-- center -->
+            <div id="centerColumn" class="analyticsSection" style="margin-left: 0px; margin-right: 0px;">
+                <div class="mainAreaContainer relative">
+                    <div class="contentBar centered">
+                        <div id="pageHeaderName" class="users">
+                            User Record
+                        </div>
+                    </div>
+                    <table id="report" class="report centered textAlignCenter">
+                        <tr>
+                            <th style="width: 10%">UserId</th>
+                            <th style="width: 25%">First Name</th>
+                            <th style="width: 25%">Last Name</th>
+                            <th style="width: 25%">User Type</th>
+                            <th style="width: 15%"></th>
+                        </tr>
+                        <!-- ko foreach: users -->
+                        <tr data-bind="tablerowBinding: true">
+                            <td style="width: 10%" data-bind="text: id"></td>
+                            <td style="width: 25%" data-bind="text: firstName"></td>
+                            <td style="width: 25%" data-bind="text: lastName"></td>
+                            <td style="width: 25%" data-bind="text: accounttype"></td>
+                            <td style="width: 15%">
+                                <div class="arrow"></div>
+                            </td>
+
+                        </tr>
+                        <tr style="border: double; border-width: 2px; border-color: white" data-bind="tablerowBinding: false">
+                            <td colspan="5">
+                                <div class="centered">
+                                    <table class="centered">
+                                        <tr>
+                                            <td>Email Id: <span data-bind="text: emailId"></span>
+                                                <br />
+                                                <table class="centered">
+                                                    <tr>
+                                                        <td><a href="#" class="button" data-bind="click: $parent.lockPhone">Lock Phone</a> </td>
+                                                        <td><a href="#" class="button" data-bind="click: $parent.wipePhoneData">Wipe phone data</a></td>
+                                                        <td><a href="#" class="button" data-bind="click: $parent.showApps">App Info</a></td>
+                                                        <td><a href="#" class="button" data-bind="click: $parent.showCallRecords">Call Records</a></td>
+                                                    </tr>
+                                                </table>
+
+                                            </td>
+                                            <td>
+                                                <img src="Images/user.jpg" alt="" class="right" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- /ko -->
+                    </table>
+                </div>
+            </div>            
+            <footer id="footer">
+                <div class="centered">
+                    © MDM 2014
+                </div>
+            </footer>
+            <!-- Dialog Boxes-->
+            <div id="logOutDialogBox" class="bold">Do you want to logOut?</div>
+            <div id="lockPhoneDialogBox" class="bold">This will lock the user's device. Do you want to continue?</div>
+            <div id="wipeDataDialogBox" class="bold">This will perform factory reset operation on user's device. All data and apps installed will be lost. Do you want to continue?</div>
+            <div id="callRecordsDialogBox" class="centered" data-bind="with: callRecordsViewModel" style="padding: 0">
+                <table class="textAlignCenter centered report">
+                    <tr>
+                        <th style="width: 10%">Sr No.</th>
+                        <th style="width: 25%">Phone Number</th>
+                        <th style="width: 20%">Call Type</th>
+                        <th style="width: 25%">Call Date</th>
+                        <th style="width: 20%">Call Duration</th>
+                    </tr>
+                    <!-- ko foreach: CallRecords -->
+                    <tr>
+                        <td style="width: 10%" data-bind="text: $index()+1"></td>
+                        <td style="width: 25%" data-bind="text: phNumber"></td>
+                        <td style="width: 20%" data-bind="text: callType"></td>
+                        <td style="width: 25%" data-bind="text: callDate"></td>
+                        <td style="width: 20%" data-bind="text: callDuration"></td>
+                    </tr>
+                    <!-- /ko -->
+                </table>
+            </div>
+            <div id="appData" class="centered" data-bind="with: appPackagesviewmodel" style="padding: 0">
+                <table class="textAlignCenter centered report">
+                    <tr>
+                        <th style="width: 10%">Sr No.</th>
+                        <th style="width: 25%">Display Name</th>
+                        <th style="width: 25%">Package Name</th>
+                        <th style="width: 25%">Version</th>
+                        <th style="width: 15%"></th>
+                    </tr>
+                    <!-- ko foreach: Apps -->
+                    <tr style="min-height: 50px">
+                        <td style="width: 10%" data-bind="text: $index()+1"></td>
+                        <td style="width: 25%" data-bind="text: displayName()"></td>
+                        <td style="width: 25%" data-bind="text: packageName()"></td>
+                        <td style="width: 25%" data-bind="text: version()"></td>
+                        <td style="width: 15%">
+                            <a href="#" data-bind="click: $parent.uninstall">Uninstall</a>
+                            <!--<span data-bind="text: ko.toJSON($parent, null, 2)" />-->
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

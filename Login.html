@@ -1,0 +1,80 @@
+﻿<html lang="en" class=" js no-flexbox flexbox-legacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head>
+    <meta charset="utf-8">
+    <title>Log in</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <meta name="viewport" content="width=device-width">
+    <link href="Content/Site.css" rel="stylesheet">
+    <link href="Content/common.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery-1.7.1.js"></script>
+    <script src="Scripts/jquery.validate.js"></script>
+    <script src="Scripts/jquery.cookie.js"></script>
+    <script src="Scripts/knockout-3.2.0.js"></script>    
+    <script src="Scripts/Common/CommonFunctions.js"></script>
+    <script src="Scripts/Model/Login.js"></script>
+
+    <script src="Scripts/ViewModel/loginViewModel.js"></script>
+    <script src="Scripts/Common/AjaxCalls.js"></script>
+
+    <style>
+        #body {
+            top: 30%;
+            left: 50%;
+            margin-top: -9em; /*set to a negative number 1/2 of your height*/
+            margin-left: -15em; /*set to a negative number 1/2 of your width*/
+            /*border: 1px solid #ccc;*/
+            position: fixed;
+           background-color: #454e59;
+        }
+    </style>
+
+</head>
+<body style="background-color: #454e59">
+    <div id="header">
+        <div class="topRow">
+            <div class="centerBox colorWhiteBlue spanHover bold logo">
+                <a href="#"><img src="Images/logo.png" alt="logo"></a>
+            </div>
+        </div>
+    </div>
+    <div id="body" class="login-main">
+    <h1 class="h2 welcome text-light text-center push-top-bottom animation-slideDown">
+ <strong><i></i>Welcome to <img src="Images/logo2.png" alt="LOGO"></strong>
+</h1>
+<div class="inner-l-con">
+        <section class="content-wrapper l-content clear-fix">
+        <h1 class="login-title">Login to your account</h1>
+        <div class="sub-l-con">
+<h2 class="log-small-title">Use an admin account to log in.</h2>
+      
+            <form id="frmId1" class="formlogin">
+                <fieldset>
+                    <legend>Log in Form</legend>
+                    <table>
+                        <tr>     
+                            <!--<label for="UserName">Email Id</label>-->
+                            
+                            <input data-val="true" placeholder="Email Address" data-val-required="The email Id field is required." id="UserName" name="UserName" type="text" value="" data-bind="value: loginObj.emailId">
+                            <span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                            </tr>
+                            <tr>
+                            <!--<label for="Password" style="font: bold">Password </label>-->
+                            <input id="Password" name="Password" placeholder="Password" type="password" data-bind="value: loginObj.password">
+                            </tr>
+                    </table>
+                    <input type="button" value="Log in" data-bind="click: loginSubmit">
+                </fieldset>
+            </form>
+            </div>
+        </section>
+        </div>
+        <div class="footer"> © <span class="tur-col">MDM</span> 2014</div>
+    </div>
+    <!--<footer id="footer">
+                <div class="centered">
+                    © MDM 2014
+                </div>
+    </footer>-->
+
+</body>
+</html>
